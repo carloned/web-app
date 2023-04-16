@@ -1,7 +1,7 @@
 pipeline{
   agent { label 'Node1'}
   tools {
-    maven 'maven3.8.6'
+    maven 'maven3.9.0'
   }
   options {
     timeout(time: 1, unit:"DAYS")
@@ -10,7 +10,7 @@ pipeline{
     stage('Cloning'){
       steps {
         echo 'Cloning from GitHub'
-        git credentialsId: 'GitHub_Credentials', url: 'https://github.com/SusanOnuorah/web-app.git'
+        git credentialsId: 'GitHub_Credentials', url: 'https://github.com/carloned/web-app.git'
         echo 'Cloning done'
       }
     }
@@ -40,7 +40,7 @@ pipeline{
     stage('Tomcat'){
       steps {
         echo 'Pushing to Tomcat'
-        deploy adapters: [tomcat9(credentialsId: 'tomcat_cred', path: '', url: 'http://35.183.29.129:8080/')], contextPath: null, onFailure: false, war: 'target/*war'
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-creed', path: '', url: 'http://52.60.76.148:8080/')], contextPath: null, onFailure: false, war: 'target/*war'
         echo 'Done'
       }
     }
